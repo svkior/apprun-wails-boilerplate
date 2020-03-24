@@ -1,0 +1,18 @@
+{
+ "name": "AppRun Wails Boilerplate",
+ "description": "Boilerplate for new project with AppRun, Wa",
+ "author": {
+  "name": "Sergey V. Kior",
+  "email": "svkior@gmail.com"
+ },
+ "version": "0.0.1",
+ "binaryname": "helloWorld",
+ "frontend": {
+  "dir": "frontend",
+  "install": "npx yarn install",
+  "build": "npx yarn build",
+  "bridge": "src",
+  "serve": "npx yarn start"
+ },
+ "WailsVersion": ""
+}
