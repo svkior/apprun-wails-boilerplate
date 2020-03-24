@@ -6,13 +6,12 @@ import * as Wails from '@wailsapp/runtime';
 require('./app.pcss')
 
 
-declare var backend: any;
-
 declare global {
-    interface Window { wails: any; }
+	interface Window { wails: any; backend: any; }
 }
 
 window.wails = window.wails || {};
+window.backend = window.backend || {};
 
 const state = {
 	status: "Initial Status"
@@ -68,6 +67,6 @@ Wails.Init(() => {
 	  });
 
 	for(var i=0; i < 100; i++){
-		backend.MyBridge.SetStatus(`Count: ${i}`)
+		window.backend.MyBridge.SetStatus(`Count: ${i}`)
 	}
 });
