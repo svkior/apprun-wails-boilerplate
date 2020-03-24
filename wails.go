@@ -3,6 +3,7 @@ package main
 import (
 	"log"
 	"sync"
+	"time"
 
 	"github.com/wailsapp/wails"
 )
@@ -28,8 +29,14 @@ func (mb *MyBridge) wailsRunner() {
 			mb.Lock()
 			mb.status = newStat
 			mb.Unlock()
-			mb.Runtime.Events.Emit("update_status", newStat)
 		}
+	}
+}
+
+func (mb *MyBridge) updateStatus() {
+	for {
+		mb.Runtime.Events.Emit("update_status", mb.status)
+		time.Sleep(1 * time.Second)
 	}
 }
 
@@ -42,6 +49,7 @@ func (mb *MyBridge) WailsInit(r *wails.Runtime) error {
 	})
 
 	go mb.wailsRunner()
+	go mb.updateStatus()
 
 	return nil
 }
